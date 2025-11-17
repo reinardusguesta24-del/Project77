@@ -1,19 +1,18 @@
 # UTS Sistem Terdistribusi
 # Konsep Sistem Terdistribusi: CAP, BASE, dan GraphQL
 
-Dokumen ini merangkum definisi, keterkaitan, dan implementasi praktis dari **CAP Theorem** dan filosofi desain **BASE**, serta membahas peran **GraphQL** sebagai mekanisme komunikasi antar proses (IPC) dalam arsitektur mikroservis.
+Dokumen ini merangkum definisi, keterkaitan, dan implementasi praktis dari **CAP Theorem** dan filosofi desain *BASE**, serta membahas peran *GraphQL** sebagai mekanisme komunikasi antar proses (IPC) dalam arsitektur mikroservis.
 
 ---
 
-## 1. CAP Theorem vs. Filosofi BASE
+ 1. CAP Theorem vs. Filosofi B
+CAP Theorem (Consistency, Availability, Partition Tolerance)
 
-#### CAP Theorem (Consistency, Availability, Partition Tolerance)
+CAP Theorem** menyatakan bahwa dalam **sistem terdistribusi**, kita tidak dapat menjamin ketiga properti berikut secara bersamaan ketika terjadi pemisahan jaringan (network partition):
 
-**CAP Theorem** menyatakan bahwa dalam **sistem terdistribusi**, kita tidak dapat menjamin ketiga properti berikut secara bersamaan ketika terjadi pemisahan jaringan (network partition):
-
-* **C — Consistency:** Semua pembaca melihat data yang sama setelah operasi penulisan selesai.
-* **A — Availability:** Setiap permintaan menerima respons (bukan pesan *timeout* atau *error*).
-* **P — Partition Tolerance:** Sistem tetap berfungsi dan melanjutkan operasi meskipun terjadi kegagalan komunikasi antar node (pemisahan jaringan).
+C — Consistency:** Semua pembaca melihat data yang sama setelah operasi penulisan selesai.
+A — Availability:** Setiap permintaan menerima respons (bukan pesan *timeout* atau *error*).
+P — Partition Tolerance:** Sistem tetap berfungsi dan melanjutkan operasi meskipun terjadi kegagalan komunikasi antar node (pemisahan jaringan).
 
 > **Teorema Kunci:** Ketika terjadi **Partition** (P), sistem harus memilih antara **Consistency** (C) atau **Availability** (A). Di dunia nyata, P tidak bisa dihindari, sehingga sistem harus memilih model **CP** atau **AP**.
 
