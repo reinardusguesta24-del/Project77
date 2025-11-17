@@ -1,19 +1,19 @@
 UTS Sistem Terdistribusi
-# Konsep Sistem Terdistribusi: CAP, BASE, dan GraphQ
+Konsep Sistem Terdistribusi: CAP, BASE, dan GraphQ
  1. CAP Theorem vs. Filosofi B
 CAP Theorem (Consistency, Availability, Partition Tolerance)
 
-CAP Theorem** menyatakan bahwa dalam **sistem terdistribusi**, kita tidak dapat menjamin ketiga properti berikut secara bersamaan ketika terjadi pemisahan jaringan (network partition):
-C — Consistency:** Semua pembaca melihat data yang sama setelah operasi penulisan selesai.
-A — Availability:** Setiap permintaan menerima respons (bukan pesan *timeout* atau *error*).
+CAP Theorem* menyatakan bahwa dalam sistem terdistribusi, kita tidak dapat menjamin ketiga properti berikut secara bersamaan ketika terjadi pemisahan jaringan (network partition):
+C — Consistency Semua pembaca melihat data yang sama setelah operasi penulisan selesai.
+A — Availability Setiap permintaan menerima respons (bukan pesan timeoutatau error).
 P — Partition Tolerance:** Sistem tetap berfungsi dan melanjutkan operasi meskipun terjadi kegagalan komunikasi antar node (pemisahan jaringan).
 
-> Teorema Kunci:** Ketika terjadi *Partition* (P), sistem harus memilih antara *Consistency*(C) atau *Availability* (A). Di dunia nyata, P tidak bisa dihindari, sehingga sistem harus memilih model *CP* atau *AP*.
+> Teorema Kunci: Ketika terjadi Partition (P), sistem harus memilih antara Consistency(C) atau Availability (A). Di dunia nyata, P tidak bisa dihindari, sehingga sistem harus memilih model CP atau AP.
 
  Filosofi Desain BASE
-*BASE* (*Basically Available, Soft-state, Eventual consistency*) adalah filosofi desain yang diadopsi oleh sistem yang memilih **Availability (A)** dan **Partition Tolerance (P)** dari CAP. Filosofi ini mengorbankan konsistensi instan demi ketersediaan yang tinggi.
+BASE (*Basically Available, Soft-state, Eventual consistency*) adalah filosofi desain yang diadopsi oleh sistem yang memilih *Availability (A)* dan *Partition Tolerance (P)*dari CAP. Filosofi ini mengorbankan konsistensi instan demi ketersediaan yang tinggi.
 
-**Basically Available:** Sistem menjamin sebagian layanan tersedia (walaupun mungkin tidak semua data terkini).
+*Basically Available:* Sistem menjamin sebagian layanan tersedia (walaupun mungkin tidak semua data terkini).
 * **Soft-state:** Keadaan data bersifat sementara dan dapat berubah tanpa input baru hingga replikasi selesai (misalnya, data *out-of-date* di replika).
 * **Eventual Consistency:** Sistem menjamin bahwa data **akhirnya** akan menjadi konsisten pada suatu waktu di masa depan, setelah partisi teratasi dan replikasi selesai.
 
@@ -23,9 +23,9 @@ CAP menjelaskan *trade-off teoritis* yang harus dipilih oleh sistem terdistribus
 
 | Konsep | Deskripsi | Pilihan CAP | Contoh Sistem |
 | :--- | :--- | :--- | :--- |
-| **CAP** | Teorema yang menjelaskan batas/trade-off. | **AP** (Availability + Partition Tolerance) | Sistem Feed/Sosial Media |
-| **BASE** | Filosofi desain yang mewujudkan pilihan AP. | **AP** | MongoDB, Cassandra |
-| **Model CP** | Memilih Konsistensi (C) ketat. | **CP** (Consistency + Partition Tolerance) | Sistem Perbankan, Zookeeper |
+| CAP | Teorema yang menjelaskan batas/trade-off. | AP (Availability + Partition Tolerance) | Sistem Feed/Sosial Media |
+| BASE | Filosofi desain yang mewujudkan pilihan AP. | AP| MongoDB, Cassandra |
+| Model CP | Memilih Konsistensi (C) ketat. | *CP* (Consistency + Partition Tolerance) | Sistem Perbankan, Zookeeper |
 
 1.3. Contoh Nyata (Skenario AP + BASE)
 
