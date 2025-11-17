@@ -1,5 +1,5 @@
 # UTS Sistem Terdistribusi
-# 📖 Konsep Sistem Terdistribusi: CAP, BASE, dan GraphQL
+# Konsep Sistem Terdistribusi: CAP, BASE, dan GraphQL
 
 Dokumen ini merangkum definisi, keterkaitan, dan implementasi praktis dari **CAP Theorem** dan filosofi desain **BASE**, serta membahas peran **GraphQL** sebagai mekanisme komunikasi antar proses (IPC) dalam arsitektur mikroservis.
 
@@ -7,9 +7,7 @@ Dokumen ini merangkum definisi, keterkaitan, dan implementasi praktis dari **CAP
 
 ## 1. CAP Theorem vs. Filosofi BASE
 
-### 1.1. Definisi Singkat
-
-#### 🎯 CAP Theorem (Consistency, Availability, Partition Tolerance)
+#### CAP Theorem (Consistency, Availability, Partition Tolerance)
 
 **CAP Theorem** menyatakan bahwa dalam **sistem terdistribusi**, kita tidak dapat menjamin ketiga properti berikut secara bersamaan ketika terjadi pemisahan jaringan (network partition):
 
@@ -19,7 +17,7 @@ Dokumen ini merangkum definisi, keterkaitan, dan implementasi praktis dari **CAP
 
 > **Teorema Kunci:** Ketika terjadi **Partition** (P), sistem harus memilih antara **Consistency** (C) atau **Availability** (A). Di dunia nyata, P tidak bisa dihindari, sehingga sistem harus memilih model **CP** atau **AP**.
 
-#### 🧱 Filosofi Desain BASE
+####  Filosofi Desain BASE
 
 **BASE** (*Basically Available, Soft-state, Eventual consistency*) adalah filosofi desain yang diadopsi oleh sistem yang memilih **Availability (A)** dan **Partition Tolerance (P)** dari CAP. Filosofi ini mengorbankan konsistensi instan demi ketersediaan yang tinggi.
 
@@ -44,7 +42,7 @@ Misalnya, pada aplikasi **Microblogging** (seperti yang Anda sebutkan):
 * **Topologi:** Beberapa node aplikasi dan database/replika tersebar di **Region A** dan **Region B**.
 * **Kebutuhan Bisnis:** Pengguna harus selalu bisa **Post** atau **Like** (Ketersediaan sangat penting).
 
-#### 📉 Skenario Partisi
+### Skenario Partisi
 
 1.  **Network Partition Terjadi (P):** Region A dan Region B kehilangan koneksi satu sama lain.
 2.  **Sistem Memilih A:** Sistem di Region A tetap menerima *postingan* baru dari pengguna lokal.
@@ -76,13 +74,13 @@ Hubungan GraphQL dengan IPC adalah sebagai berikut:
 
 GraphQL memposisikan dirinya di antara klien dan layanan *backend* untuk mengoptimalkan komunikasi eksternal, namun hal ini memiliki implikasi pada kompleksitas IPC internal.
 
-#### ✅ Manfaat
+#### Manfaat
 
 * **Single Endpoint:** Klien hanya perlu berinteraksi dengan satu URL.
 * **Flexible Fetching:** Klien **secara presisi** menentukan *fields* yang dibutuhkan, mengurangi masalah **Overfetching** (mendapatkan data berlebihan) dan **Underfetching** (butuh *round-trip* tambahan).
 * **Agregasi Data:** Efektif dalam menyatukan data yang tersebar di banyak layanan *backend* dalam satu respons terstruktur.
 
-#### ⛔ Trade-offs
+####  Trade-offs
 
 * **Bottleneck Gateway:** GraphQL Gateway dapat menjadi titik tunggal kegagalan dan/atau *bottleneck* performa jika tidak di-optimasi.
 * **Kompleksitas IPC:** Satu kueri kompleks dapat memicu *fan-out* banyak panggilan IPC internal, membuat *tracing* dan *observability* (latensi, *error rate*) menjadi lebih sulit.
